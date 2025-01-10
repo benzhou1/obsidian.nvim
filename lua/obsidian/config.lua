@@ -407,6 +407,9 @@ end
 ---@class obsidian.config.UIOpts
 ---
 ---@field enable boolean
+---@field enable_check boolean
+---@field enable_ref boolean
+---@field enable_highlight boolean
 ---@field update_debounce integer
 ---@field max_file_length integer|?
 ---@field checkboxes table<string, obsidian.config.CheckboxSpec>

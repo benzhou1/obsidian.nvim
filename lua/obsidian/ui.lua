@@ -478,9 +478,17 @@ end
 ---@return ExtMark[]
 local get_line_marks = function(line, lnum, ui_opts)
   local marks = {}
-  get_line_check_extmarks(marks, line, lnum, ui_opts)
-  get_line_ref_extmarks(marks, line, lnum, ui_opts)
-  get_line_highlight_extmarks(marks, line, lnum, ui_opts)
+  if ui_opts.enable_check ~= false then
+    get_line_check_extmarks(marks, line, lnum, ui_opts)
+  end
+
+  if ui_opts.enable_ref ~= false then
+    get_line_ref_extmarks(marks, line, lnum, ui_opts)
+  end
+
+  if ui_opts.enable_highlight ~= false then
+    get_line_highlight_extmarks(marks, line, lnum, ui_opts)
+  end
   return marks
 end
 
