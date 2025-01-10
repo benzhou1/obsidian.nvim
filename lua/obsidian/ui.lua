@@ -191,17 +191,33 @@ local function get_line_check_extmarks(marks, line, lnum, ui_opts)
     -- TODO: escape `char` if needed
     if string.match(line, "^%s*- %[" .. util.escape_magic_characters(char) .. "%]") then
       local indent = util.count_indent(line)
-      marks[#marks + 1] = ExtMark.new(
-        nil,
-        lnum,
-        indent,
-        ExtMarkOpts.from_tbl {
-          end_row = lnum,
-          end_col = indent + 5,
-          conceal = opts.char,
-          hl_group = opts.hl_group,
-        }
-      )
+      if #opts == 0 then
+        marks[#marks + 1] = ExtMark.new(
+          nil,
+          lnum,
+          indent,
+          ExtMarkOpts.from_tbl {
+            end_row = lnum,
+            end_col = indent + 5,
+            conceal = opts.char,
+            hl_group = opts.hl_group,
+          }
+        )
+      else
+        for i, opt in ipairs(opts) do
+          marks[#marks + 1] = ExtMark.new(
+            nil,
+            lnum,
+            indent + i - 1,
+            ExtMarkOpts.from_tbl {
+              end_row = lnum,
+              end_col = indent + i,
+              conceal = opt.char,
+              hl_group = opt.hl_group,
+            }
+          )
+        end
+      end
       return marks
     end
   end

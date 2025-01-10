@@ -412,7 +412,7 @@ end
 ---@field enable_highlight boolean
 ---@field update_debounce integer
 ---@field max_file_length integer|?
----@field checkboxes table<string, obsidian.config.CheckboxSpec>
+---@field checkboxes table<string, obsidian.config.CheckboxSpec> | obsidian.config.CheckboxSpec[]
 ---@field bullets obsidian.config.UICharSpec|?
 ---@field external_link_icon obsidian.config.UICharSpec
 ---@field reference_text obsidian.config.UIStyleSpec
